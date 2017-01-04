@@ -19,8 +19,10 @@
 #define __FREEFARE_H__
 
 #include <sys/types.h>
-
+#include <stdbool.h>
 #include <stdint.h>
+
+#define __FREEFARE_PCSC_H__
 
 #ifndef __FREEFARE_PCSC_H__
 // For backwards compatibility:

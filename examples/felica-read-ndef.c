@@ -30,12 +30,14 @@
 #  include <endian.h>
 #endif
 
+#ifdef USE_LIBNFC
 #include <nfc/nfc.h>
+#endif
 
 #include <freefare.h>
 
 #define NDEF_BUFFER_SIZE 512
-
+#ifdef USE_LIBNFC
 void
 usage (char *progname)
 {
@@ -43,10 +45,12 @@ usage (char *progname)
     fprintf (stderr, "\nAvailable options:\n");
     fprintf (stderr, "  -o FILE  Write NDEF message to FILE\n");
 }
+#endif
 
 int
 main (int argc, char *argv[])
 {
+#ifdef USE_LIBNFC
     int error = EXIT_SUCCESS;
     nfc_device *device = NULL;
     FreefareTag *tags = NULL;
@@ -155,5 +159,6 @@ main (int argc, char *argv[])
 	freefare_free_tags (tags);
 	nfc_close (device);
     }
+#endif
     exit(EXIT_SUCCESS);
 }

@@ -10,9 +10,9 @@ If you are new to _libfreefare_ or the _nfc-tools_, you should collect useful in
 ## Tags
 | Tag                 | Status        |
 |:--------------------|:--------------|
-| FeliCa Lite         | Supported     |
-| MIFARE Classic 1k   | Supported     |
-| MIFARE Classic 4k   | Supported     |
+| FeliCa Lite         | Not supported     |
+| MIFARE Classic 1k   | Not supported     |
+| MIFARE Classic 4k   | Not supported     |
 | MIFARE DESFire 2k   | Supported     |
 | MIFARE DESFire 4k   | Supported     |
 | MIFARE DESFire 8k   | Supported     |
@@ -22,8 +22,8 @@ If you are new to _libfreefare_ or the _nfc-tools_, you should collect useful in
 | MIFARE Plus S 4k    | Not supported |
 | MIFARE Plus X 2k    | Not supported |
 | MIFARE Plus X 4k    | Not supported |
-| MIFARE Ultralight   | Supported     |
-| MIFARE Ultralight C | Supported     |
+| MIFARE Ultralight   | Not supported     |
+| MIFARE Ultralight C | Not supported     |
 
 ## Specifications
 | Specification                         | Status    |
@@ -46,7 +46,7 @@ apt-get install autoconf automake git libtool libssl-dev pkg-config
 
 Clone this repository:
 ```
-git clone https://github.com/nfc-tools/libfreefare.git
+git clone https://github.com/FeitianSmartcardReader/libfreefare-pcsc.git
 cd libfreefare
 ```
 
@@ -57,7 +57,7 @@ autoreconf -vis
 
 You can now compile **libfreefare** the usual autotools way:
 ```
-./configure --prefix=/usr
+./configure --prefix=/usr --without-libnfc
 make
 sudo make install
 ```

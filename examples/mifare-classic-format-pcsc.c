@@ -214,8 +214,8 @@ main(int argc, char *argv[])
 
 	for (int i = 0; (!error) && tags[i]; i++) {
 	    switch (freefare_get_tag_type (tags[i])) {
-	    case CLASSIC_1K:
-	    case CLASSIC_4K:
+	    case MIFARE_CLASSIC_1K:
+	    case MIFARE_CLASSIC_4K:
 		break;
 	    default:
 		continue;
@@ -235,15 +235,15 @@ main(int argc, char *argv[])
 	    }
 
 	    if (format) {
-		enum mifare_tag_type tt = freefare_get_tag_type (tags[i]);
+		enum freefare_tag_type tt = freefare_get_tag_type (tags[i]);
 		at_block = 0;
 
 		if (format_options.fast) {
-		    printf (START_FORMAT_N, (tt == CLASSIC_1K) ? 1 : 2);
+		    printf (START_FORMAT_N, (tt == MIFARE_CLASSIC_1K) ? 1 : 2);
 		    if (!try_format_sector (tags[i], 0x00))
 			break;
 
-		    if (tt == CLASSIC_4K)
+		    if (tt == MIFARE_CLASSIC_4K)
 			if (!try_format_sector (tags[i], 0x10))
 			    break;
 
@@ -251,12 +251,12 @@ main(int argc, char *argv[])
 		    continue;
 		}
 		switch (tt) {
-		case CLASSIC_1K:
+		case MIFARE_CLASSIC_1K:
 		    mod_block = 4;
 		    if (!format_mifare_classic_1k (tags[i]))
 			error = 1;
 		    break;
-		case CLASSIC_4K:
+		case MIFARE_CLASSIC_4K:
 		    mod_block = 10;
 		    if (!format_mifare_classic_4k (tags[i]))
 			error = 1;

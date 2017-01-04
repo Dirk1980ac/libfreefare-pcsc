@@ -18,13 +18,15 @@
 #include <err.h>
 #include <stdlib.h>
 
+#ifdef USE_LIBNFC
 #include <nfc/nfc.h>
-
+#endif
 #include <freefare.h>
 
 int
 main (void)
 {
+#ifdef USE_LIBNFC
     nfc_device *device = NULL;
     FreefareTag *tags = NULL;
     nfc_connstring devices[8];
@@ -95,6 +97,7 @@ main (void)
 	freefare_free_tags (tags);
 	nfc_close (device);
     }
+#endif
 
     exit(EXIT_SUCCESS);
 }

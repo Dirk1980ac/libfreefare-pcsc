@@ -36,11 +36,13 @@
 #include <string.h>
 //#include <strings.h>
 
+#define USE_PCSC
 #ifdef USE_LIBNFC
 #include <freefare.h>
 #endif
 #ifdef USE_PCSC
 #include "freefare_pcsc.h"
+#include <stdint.h>
 #endif
 
 /*

@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
+#define USE_PCSC
 #ifndef __FREEFARE_INTERNAL_H__
 #define __FREEFARE_INTERNAL_H__
 
@@ -23,6 +24,12 @@
 #include <openssl/des.h>
 #include <stdlib.h>
 #include <stdint.h>
+
+#ifdef  USE_PCSC
+#include <winscard.h>
+#include <wintypes.h>
+#include "freefare.h"
+#endif
 
 /*
  * Endienness macros
@@ -222,13 +229,13 @@ typedef enum {
  * Extra members in derived classes are initialized in the correpsonding
  * mifare_*_connect() function.
  */
+
 struct freefare_tag {
 #ifdef USE_LIBNFC
     nfc_device *device;
     nfc_target info;
 #endif
     // PCSC things
-
 
 #ifdef USE_PCSC
 #ifndef USE_LIBNFC
